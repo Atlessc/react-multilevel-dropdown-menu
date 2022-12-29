@@ -67,8 +67,7 @@ button span {
   padding: 0.7rem 1rem;
 }
 
-.menu-items a:hover,
-.menu-items button:hover {
+.menu-items a:active {
   background-color: #f2f2f2;
 }
 

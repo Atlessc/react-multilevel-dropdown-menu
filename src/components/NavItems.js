@@ -3,7 +3,7 @@ import Dropdown from './Dropdown';
 
 import { Link } from 'react-router-dom';
 
-const MenuItems = ({ items, depthLevel }) => {
+const NavItems = ({ items }) => {
   const [dropdown, setDropdown] = useState(false);
 
   let ref = useRef();
@@ -27,24 +27,19 @@ const MenuItems = ({ items, depthLevel }) => {
     };
   }, [dropdown]);
 
-  const onMouseEnter = () => {
-    window.innerWidth > 960 && setDropdown(true);
-  };
-
-  const onMouseLeave = () => {
-    window.innerWidth > 960 && setDropdown(false);
+  const handleClick = () => {
+    setDropdown (true , false);
   };
 
   const closeDropdown = () => {
-    dropdown && setDropdown(false);
+    dropdown && setDropdown(false, true);
   };
 
   return (
     <li
-      className="menu-items"
+      className="navItems"
       ref={ref}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      handleClick={handleClick}
       onClick={closeDropdown}
     >
       {items.url && items.submenu ? (
@@ -55,22 +50,9 @@ const MenuItems = ({ items, depthLevel }) => {
             aria-expanded={dropdown ? 'true' : 'false'}
             onClick={() => setDropdown((prev) => !prev)}
           >
-            {window.innerWidth < 960 && depthLevel === 0 ? (
-              items.title
-            ) : (
               <Link to={items.url}>{items.title}</Link>
-            )}
-
-            {depthLevel > 0 &&
-            window.innerWidth < 960 ? null : depthLevel > 0 &&
-              window.innerWidth > 960 ? (
-              <span>&raquo;</span>
-            ) : (
-              <span className="arrow" />
-            )}
           </button>
           <Dropdown
-            depthLevel={depthLevel}
             submenus={items.submenu}
             dropdown={dropdown}
           />
@@ -84,14 +66,8 @@ const MenuItems = ({ items, depthLevel }) => {
             onClick={() => setDropdown((prev) => !prev)}
           >
             {items.title}{' '}
-            {depthLevel > 0 ? (
-              <span>&raquo;</span>
-            ) : (
-              <span className="arrow" />
-            )}
           </button>
           <Dropdown
-            depthLevel={depthLevel}
             submenus={items.submenu}
             dropdown={dropdown}
           />
@@ -103,4 +79,4 @@ const MenuItems = ({ items, depthLevel }) => {
   );
 };
 
-export default MenuItems;
+export default NavItems;

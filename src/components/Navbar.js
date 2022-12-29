@@ -1,13 +1,13 @@
-import { menuItems } from '../menuItems';
-import MenuItems from './MenuItems';
+import { navItems } from '../navItems';
+import NavItems from './NavItems';
 const Navbar = () => {
   return (
     <nav>
       <ul className="menus">
-        {menuItems.map((menu, index) => {
+        {navItems.map((menu, index) => {
           const depthLevel = 0;
           return (
-            <MenuItems
+            <NavItems
               items={menu}
               key={index}
               depthLevel={depthLevel}
