@@ -7,6 +7,7 @@ export const navItems = [
           title: 'Home',
           url: '/',
         },
+        
         {
           title: 'Skills',
           url: '/Skills',
